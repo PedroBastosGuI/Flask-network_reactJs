@@ -1,11 +1,13 @@
 import {CameraInit} from './Components/Camera';
-import{Header} from './Components/header';
+import { Header } from './Components/header';
+import {Global} from './styles/global'
 function App() {
   return (
-    <div className="App">
-      <Header />
+    <>
+      <Global/>
+      <Header/>
       <CameraInit/>
-    </div>
+    </>
   );
 }
 

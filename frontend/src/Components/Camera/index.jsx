@@ -1,6 +1,8 @@
 import React,{useRef, useEffect, useState} from 'react';
-import { Container,Camera, Button,Video,
-Result,
+import { Button } from 'react-bootstrap';
+import { Buttons } from '../Button';
+import { Container,Camera,Video,
+Footer,
 Canvas,
 ButtonClose,
 
@@ -73,16 +75,20 @@ export function CameraInit(){
         })
       };
     return(
-        <>
-        <header>
-          <h1>Image classifier</h1>
-        </header>
-        <main>
-          <video ref={videoRef} onCanPlay={() => playCameraStream()} id="video" />
-          <canvas ref={canvasRef} hidden></canvas>
-          <p>Currently seeing: {result}</p>
-        </main>
-      </>
+        
+        <Container>
+          <div classname="video">
+            <video ref={videoRef} onCanPlay={() => playCameraStream()} id="video" />
+            <canvas ref={canvasRef} hidden></canvas>
+          </div>
+
+          <Footer>
+            <Buttons
+              name="Tirar Foto"
+            />
+          </Footer>
+        </Container>
+      
 
     );
 }

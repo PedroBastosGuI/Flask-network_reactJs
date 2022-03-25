@@ -1,13 +1,18 @@
-import React from "react";
-import { Container, Content } from "./styles";
+import React from 'react';
+import {Container} from './styled';
+import { Button } from 'react-bootstrap';
+import LogoPng from '../../assets/logo.png'
 
-import logoImag from '../../assets/logo.png';
-export function Header() {
+export function Header(){
     return(
         <Container>
-            <Content>
-                <img src={logoImag}/>                
-            </Content>
+        <div className="background_image">
+            <img
+                src={LogoPng}
+                
+            />
+        </div>
+
         </Container>
     );
-}
+};
