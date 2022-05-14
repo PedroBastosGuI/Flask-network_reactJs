@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, request
 import os
 import cv2 as cv
+from matplotlib.pyplot import get
 import tensorflow as tf
 import pandas as pd
 from segmentation import Segmentation
@@ -31,27 +32,16 @@ def index(path=''):
 
 @app.route('/classify', methods=['POST'])
 def classify():
+    global meu_dic  
     if (request.files['image']): 
         file = request.files['image']
-
         img_response = Image.open(file.stream)
-
         img_array = np.array(img_response)[:,:,:-1]
-
-
         #print(img_array, 'bug aqui!!!')
-
         segmentation_value = Segmentation(img_array)
-
-
-        
-
         if 1==1:
             
             print(segmentation_value)
-
-            
-            
             if len(segmentation_value.index) != 0 :
                 normalization_classifier_model = Normalization(segmentation_value)
                 print(normalization_classifier_model,"OLHA EU AQUI PEDRIN")
@@ -60,14 +50,16 @@ def classify():
                 result_predict = neural_model.predict(normalization_classifier_model)
                 
                 
-                list_test = ['maduro','quebrado','esverdado','queimado','ardidos','mofados','mofados','maduro','maduro']
+                list_test = ['maduro','quebrado','esverdado','queimado','ardidos','mofados','amassados','danificados','impurezas']
                 meu_dic = {list_test[i]:str(result_predict[0][i]) for i in range(len(list_test))}
-                
-                print("aaaaaaaaaaa",meu_dic )
-#" ".join([str(x) for x in result_predict[0]])
-
                 return meu_dic
 
             else:
                 return 'error'
+
         
+@app.route('/teste', methods=['GET'])
+def getClassification():
+    return meu_dic
+
+

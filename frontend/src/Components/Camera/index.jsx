@@ -13,8 +13,8 @@ export function CameraInit(){
     const canvasRef = useRef();
     const imageRef = useRef();
     const videoRef = useRef();
-  
-    const [result, setResult] = useState("");
+
+    const [result, setResult] = useState("0.00");
 
     useEffect(() => {
         async function getCameraStream() {
@@ -30,32 +30,37 @@ export function CameraInit(){
       
         getCameraStream();
       }, []);
-      
-      useEffect(() => {
-        const interval = setInterval(async () => {
-          captureImageFromCamera();
-    
-          if (imageRef.current) {
-            const formData = new FormData();
-            formData.append('image', imageRef.current);
-    
-            const response = await fetch('/classify', {
-              method: "POST",
-              body: formData,
-            });
 
-            
 
-            if (response.status === 200) {
-              const text = await response.text();
-              setResult(text);
-            } else {
-              setResult("Error from API.");
-            }
+  
+    async function PostImageData(){
+      alert('to rolando');
+      const interval = setInterval(async () => {
+        captureImageFromCamera();
+  
+        if (imageRef.current) {
+          const formData = new FormData();
+          formData.append('image', imageRef.current);
+  
+          const response = await fetch('/classify', {
+            method: "POST",
+            body: formData,
+          });
+
+          
+
+          if (response.status === 200) {
+            const text = await response.text();
+            setResult(text);
+          } else {
+            setResult("Error from API.");
           }
-        }, 1000);
-        return () => clearInterval(interval);
-      }, []);
+        }
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+      
+     
     
       const playCameraStream = () => {
         if (videoRef.current) {
@@ -85,9 +90,11 @@ export function CameraInit(){
           </div>
 
           <Footer>
-            <Buttons
-              name="Tirar Foto"
-            />
+            <button
+            onClick={PostImageData}
+            >
+              Classificar
+            </button>
           </Footer>
         </Container>
       
