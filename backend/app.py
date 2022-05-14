@@ -55,13 +55,18 @@ def classify():
             if len(segmentation_value.index) != 0 :
                 normalization_classifier_model = Normalization(segmentation_value)
                 print(normalization_classifier_model,"OLHA EU AQUI PEDRIN")
-                neural_model = tf.keras.models.load_model("/home/pedro/Documentos/react-flask-keras-app/backend/treinamento_dois")
+                neural_model = tf.keras.models.load_model("C:\\Users\\Galpão-Desktop\\Documents\\Aibeans_project\\Flask-network_reactJs\\backend\\treinamento_dois")
 
                 result_predict = neural_model.predict(normalization_classifier_model)
+                
+                
+                list_test = ['maduro','quebrado','esverdado','queimado','ardidos','mofados','mofados','maduro','maduro']
+                meu_dic = {list_test[i]:str(result_predict[0][i]) for i in range(len(list_test))}
+                
+                print("aaaaaaaaaaa",meu_dic )
+#" ".join([str(x) for x in result_predict[0]])
 
-                print (result_predict,"ME ACHOU HEHEHEHEHEHEHEH")
-                    
-                return " ".join([str(x) for x in result_predict[0]])
+                return meu_dic
 
             else:
                 return 'error'

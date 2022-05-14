@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container} from './styled';
-import { Button } from 'react-bootstrap';
-import LogoPng from '../../assets/logo.png'
+import LogoPng from '../../assets/logo.png';
+//import {Table} from '../../Components/table';
 
 export function Header(){
     return(
@@ -12,7 +12,6 @@ export function Header(){
                 
             />
         </div>
-
         </Container>
     );
 };
