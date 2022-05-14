@@ -5,12 +5,13 @@ import React, {useState,useEffect} from 'react';
 
 export function Table(){
 
-   const[data, setData] = useState(null);
+   const[data, setData] = useState("dados");
 
     useEffect(()=>{
 
         async function request(){
-            const response = await axios.post("http://localhost:5000/");
+            const response = await axios.get("http://localhost:5000/teste");
+            setData(response.data)
         };
         request();
 
@@ -18,7 +19,14 @@ export function Table(){
 
 
     return(
-        <h1>oie</h1>
+        <div>
+            <h1>Resutaldos de classificação</h1>
+            <p>
+                {
+                    data.ardidos
+                }
+                </p>
+        </div>
     );
 
 }
