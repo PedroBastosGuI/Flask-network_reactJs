@@ -30,32 +30,16 @@ export function CameraInit(){
   
     async function PostImageData(){
       alert('to rolando');
-      const interval = setInterval(async () => {
         captureImageFromCamera();
-  
-        if (imageRef.current) {
           const formData = new FormData();
           formData.append('image', imageRef.current);
   
-          const response = await fetch('/classify', {
+          await fetch('/classify', {
             method: "POST",
             body: formData,
           });
-
-        
-          if (response.status === 200) {
-            const text = await response.text();
-            setResult(text);
-          } else {
-            setResult("Error from API.");
-          }
-        }
-      }, 1000);
-      return () => clearInterval(interval);
     }
       
-     
-    
       const playCameraStream = () => {
         if (videoRef.current) {
           videoRef.current.play();

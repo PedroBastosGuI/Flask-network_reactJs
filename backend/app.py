@@ -30,12 +30,11 @@ def index(path=''):
 
 @app.route('/classify', methods=['POST'])
 def classify():
-    global meu_dic  
+    global result_json  
     if (request.files['image']): 
         file = request.files['image']
         img_response = Image.open(file.stream)
         img_array = np.array(img_response)[:,:,:-1]
-        #print(img_array, 'bug aqui!!!')
         segmentation_value = Segmentation(img_array)
         if 1==1:
             
@@ -54,20 +53,17 @@ def classify():
                 
                 results_index = pd.Series(result_predict_argmax)
                 results_count = results_index.value_counts()
-                print("OIA EU AI",results_count)
-                
-
-
+            
                 list_test = ['Amassados','Ardidos','Chochos','Esverdeados','Germinados','Impurezas','Maduros','Mofados','Picados_por_inseto','Quebrados','Queimados']
-                meu_dic = {list_test[i]:str(result_predict[0][i]) for i in range(len(list_test))}
-                return meu_dic
+                result_json = {list_test[i]:str(result_predict[0][i]) for i in range(len(list_test))}
+                return result_json
 
             else:
                 return 'error'
 
         
-@app.route('/teste', methods=['GET'])
+@app.route('/teste')
 def getClassification():
-    return meu_dic
+    return result_json
 
 

@@ -7,15 +7,17 @@ export function Table(){
 
    const[data, setData] = useState("0.0 %");
 
-    useEffect(()=>{
+     useEffect(()=>{
 
         async function request(){
             const response = await axios.get("http://localhost:5000/teste");
             setData(response.data)
+            console.log(response.data)
+
         };
         request();
 
-    },[data]);
+    },[]);
 
     console.log(data)
 
