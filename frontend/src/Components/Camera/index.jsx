@@ -1,11 +1,6 @@
 import React,{useRef, useEffect, useState} from 'react';
-import { Button } from 'react-bootstrap';
-import { Buttons } from '../Button';
-import { Container,Camera,Video,
+import { Container,
 Footer,
-Canvas,
-ButtonClose,
-
 } from './styles';
 
 export function CameraInit(){
@@ -47,8 +42,7 @@ export function CameraInit(){
             body: formData,
           });
 
-          
-
+        
           if (response.status === 200) {
             const text = await response.text();
             setResult(text);

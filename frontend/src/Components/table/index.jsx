@@ -5,7 +5,7 @@ import {Container} from './styled';
 
 export function Table(){
 
-   const[data, setData] = useState("dados");
+   const[data, setData] = useState("0.0 %");
 
     useEffect(()=>{
 
@@ -15,7 +15,7 @@ export function Table(){
         };
         request();
 
-    },[]);
+    },[data]);
 
     console.log(data)
 
@@ -24,29 +24,35 @@ export function Table(){
             <table>
                 <thead>
                     <tr>
-                        <th>Grãos Maduros</th>
-                        <th>Grãos Quebrados</th>
-                        <th>Grãos Esverdeados</th>
-                        <th>Grãos Queimados</th>
-                        <th>Grãos Ardidos</th>
-                        <th>Grãos Mofados</th>
                         <th>Grãos Amassados</th>
+                        <th>Grãos Ardidos</th>
+                        <th>Grãos Chochos</th>
+                        <th>Grãos Esverdeados</th>
+                        <th>Grãos Germinados</th>
+                        <th>Grãos Impurezas</th>
+                        <th>Grãos Maduros</th>
+                        <th>Grãos Mofados</th>
                         <th>Grãos Danificado por insetos</th>
-                        <th>Impurezas</th>
+                        <th>Grãos Quebrados</th>
+                        <th>Grãos Queimados</th>
                     </tr>
                 </thead>
 
+
                 <tbody>
                     <tr>
-                        <td>{Math.round(data.maduro * 100).toFixed(2)} %</td>
-                        <td>{Math.round(data.quebrado * 100).toFixed(2)} %</td>
-                        <td>{Math.round(data.esverdado * 100).toFixed(2)} %</td>
-                        <td>{Math.round(data.queimado* 100).toFixed(2)} %</td>
-                        <td>{Math.round(data.ardidos* 100).toFixed(2)} %</td>
-                        <td>{Math.round(data.mofados* 100).toFixed(2)} %</td>
-                        <td>{Math.round(data.amassados* 100).toFixed(2)} %</td>
-                        <td>{Math.round(data.danificados* 100).toFixed(2)} %</td>
-                        <td>{Math.round(data.impurezas* 100).toFixed(2)} %</td>
+                        <td>{data.Amassados} %</td>
+                        <td>{data.Ardidos} %</td>
+                        <td>{data.Chochos} %</td>
+                        <td>{data.Esverdeados} %</td>
+                        <td>{data.Germinados} %</td>
+                        <td>{data.Impurezas} %</td>
+                        <td>{data.Maduros} %</td>
+                        <td>{data.Mofados} %</td>
+                        <td>{data.Picados_por_inseto} %</td>
+                        <td>{data.Quebrados} %</td>
+                        <td>{data.Queimados} %</td>
+
                     </tr>
                     
                 </tbody>

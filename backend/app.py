@@ -7,12 +7,10 @@ import tensorflow as tf
 import pandas as pd
 from segmentation import Segmentation
 from normalization import Normalization
-from classifier import classifyImage
 from PIL import Image
 import numpy as np
-
 from reverseProxy import proxyRequest
-from seg import segmentation_two
+
 MODE = os.getenv('FLASK_ENV')
 DEV_SERVER_URL = 'http://localhost:3000/'
 
@@ -44,13 +42,23 @@ def classify():
             print(segmentation_value)
             if len(segmentation_value.index) != 0 :
                 normalization_classifier_model = Normalization(segmentation_value)
-                print(normalization_classifier_model,"OLHA EU AQUI PEDRIN")
                 neural_model = tf.keras.models.load_model("C:\\Users\\Galpão-Desktop\\Documents\\Aibeans_project\\Flask-network_reactJs\\backend\\treinamento_dois")
 
                 result_predict = neural_model.predict(normalization_classifier_model)
                 
+
+                result_predict_argmax = []
+                for list_argmax in result_predict:
+                    argmax =  np.argmax(list_argmax, axis=0)
+                result_predict_argmax.append(argmax)
                 
-                list_test = ['maduro','quebrado','esverdado','queimado','ardidos','mofados','amassados','danificados','impurezas']
+                results_index = pd.Series(result_predict_argmax)
+                results_count = results_index.value_counts()
+                print("OIA EU AI",results_count)
+                
+
+
+                list_test = ['Amassados','Ardidos','Chochos','Esverdeados','Germinados','Impurezas','Maduros','Mofados','Picados_por_inseto','Quebrados','Queimados']
                 meu_dic = {list_test[i]:str(result_predict[0][i]) for i in range(len(list_test))}
                 return meu_dic
 

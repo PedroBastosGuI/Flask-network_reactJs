@@ -48,7 +48,6 @@ def Segmentation(img):
 
     columns = ['Area', 'Perimetro']+ mKeys + ['cx','cy','B','G',
     'R','H','S','V','L','A','D','LBP','I1','I2','I3','b','g','r','h','s','v','l','a','d','lbp','i1','i2','ir3','classe','imagem']
-    print("Pedrin Viadin")
     columns_forma = ['Area', 'Perimetro']+ mKeys + ['cx','cy','classe','imagem']
     columns_color = ['B','G',
     'R','H','S','V','L','A','D','LBP','I1','I2','I3','b','g','r','h','s','v','l','a','d','lbp','i1','i2','i3','classe','imagem']
