@@ -29,7 +29,6 @@ export function CameraInit(){
 
   
     async function PostImageData(){
-      alert('to rolando');
         captureImageFromCamera();
           const formData = new FormData();
           formData.append('image', imageRef.current);

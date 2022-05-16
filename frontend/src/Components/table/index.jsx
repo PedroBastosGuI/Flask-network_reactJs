@@ -6,7 +6,6 @@ import {Container} from './styled';
 export function Table(){
 
    const[data, setData] = useState("0.0 %");
-
      useEffect(()=>{
 
         async function request(){
@@ -17,7 +16,7 @@ export function Table(){
         };
         request();
 
-    },[]);
+    },[data]);
 
     console.log(data)
 
@@ -43,17 +42,17 @@ export function Table(){
 
                 <tbody>
                     <tr>
-                        <td>{data.Amassados} %</td>
-                        <td>{data.Ardidos} %</td>
-                        <td>{data.Chochos} %</td>
-                        <td>{data.Esverdeados} %</td>
-                        <td>{data.Germinados} %</td>
-                        <td>{data.Impurezas} %</td>
-                        <td>{data.Maduros} %</td>
-                        <td>{data.Mofados} %</td>
-                        <td>{data.Picados_por_inseto} %</td>
-                        <td>{data.Quebrados} %</td>
-                        <td>{data.Queimados} %</td>
+                        <td>{data.Amassados}</td>
+                        <td>{data.Ardidos}</td>
+                        <td>{data.Chochos}</td>
+                        <td>{data.Esverdeados}</td>
+                        <td>{data.Germinados}</td>
+                        <td>{data.Impurezas}</td>
+                        <td>{data.Maduros}</td>
+                        <td>{data.Mofados}</td>
+                        <td>{data.Picados_por_inseto}</td>
+                        <td>{data.Quebrados}</td>
+                        <td>{data.Queimados}</td>
 
                     </tr>
                     
